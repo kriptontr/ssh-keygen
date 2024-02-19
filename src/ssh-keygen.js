@@ -52,13 +52,18 @@ function ssh_keygen(location, opts, callback){
 	opts || (opts={});
 
 	var pubLocation = location+'.pub';
+	if(!opts.type) {
+		opts.type = 'rsa';
+		if(!opts.size) opts.size = '2048';
+		if(!opts.format) opts.format = 'RFC4716';
+	}
 	if(!opts.comment) opts.comment = '';
 	if(!opts.password) opts.password = '';
-	if(!opts.size) opts.size = '2048';
-	if(!opts.format) opts.format = 'RFC4716';
+
+ 
 
 	var keygen = spawn(binPath(), [
-		'-t','rsa',
+		'-t', opts.type,
 		'-b', opts.size,
 		'-C', opts.comment,
 		'-N', opts.password,

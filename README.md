@@ -24,7 +24,7 @@ var location = __dirname + '/foo_rsa';
 var comment = 'joe@foobar.com';
 var password = 'keypassword'; // false and undefined will convert to an empty pw
 var format = 'PEM'; // default is RFC4716
-
+var type = 'ed25519'; // default is rsa
 keygen({
   location: location,
   comment: comment,
