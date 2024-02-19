@@ -54,21 +54,20 @@ function ssh_keygen(location, opts, callback){
 	var pubLocation = location+'.pub';
 	if(!opts.type) {
 		opts.type = 'rsa';
-		if(!opts.size) opts.size = '2048';
 		if(!opts.format) opts.format = 'RFC4716';
 	}
 	if(!opts.comment) opts.comment = '';
 	if(!opts.password) opts.password = '';
-
+	if(!opts.size) opts.size = '2048';
  
 
 	var keygen = spawn(binPath(), [
 		'-t', opts.type,
-		'-b', opts.size,
+		// '-b', opts.size,
 		'-C', opts.comment,
 		'-N', opts.password,
 		'-f', location,
-		'-m', opts.format
+		// '-m', opts.format
 	]);
 
 	keygen.stdout.on('data', function(a){
